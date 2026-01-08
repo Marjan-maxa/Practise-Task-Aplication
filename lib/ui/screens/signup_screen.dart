@@ -3,8 +3,8 @@ import 'package:taskmanager_app_practise/ui/widgets/screen_bacround.dart';
 
 import 'forget_password_otp_screen.dart';
 
-class ForgetPasswordEmailVerify extends StatelessWidget {
-  const ForgetPasswordEmailVerify({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,8 @@ class ForgetPasswordEmailVerify extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 160,),
-                  Text('Your Email Address',style:Theme.of(context).textTheme.titleLarge,),
-                  const SizedBox(height: 10,),
-                  Text('A 6 digit verification pin will send to your email address',style: Theme.of(context).textTheme.bodyMedium?.copyWith(color:Colors.grey )),
+                  const SizedBox(height: 100,),
+                  Text('Join With Us',style:Theme.of(context).textTheme.titleLarge,),
                   const SizedBox(height: 15,),
                   TextFormField(
                     decoration: InputDecoration(
@@ -27,37 +25,61 @@ class ForgetPasswordEmailVerify extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'First Name'
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Last Name'
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Mobile'
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Password'
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
                   SizedBox(
+                      height: 50,
                       width: double.infinity,
                       child: FilledButton(
-              
+
                           style: FilledButton.styleFrom(
                               backgroundColor: Colors.teal
                           ),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPasswordOtpScreen()));
                           }, child: Icon(Icons.arrow_circle_right_outlined,size: 25,))
-                   ),
+                  ),
                   const SizedBox(height: 20,),
                   Center(
                     child: Column(
                       children: [
                         const SizedBox(height: 20,),
-              
+
                         RichText(
                           text:TextSpan(
-                              text: "Have Account?",
+                              text: "Have account?",
                               style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                               children: [
-              
+
                                 TextSpan(
                                     text: " Sing In",
                                     style: TextStyle(color: Colors.teal)
                                 )
                               ]
-              
+
                           ),
-              
+
                         ),
                       ],
                     ),

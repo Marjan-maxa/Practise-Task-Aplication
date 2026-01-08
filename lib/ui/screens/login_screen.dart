@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager_app_practise/ui/screens/forget_password_email_verify.dart';
+import 'package:taskmanager_app_practise/ui/screens/signup_screen.dart';
 import 'package:taskmanager_app_practise/ui/widgets/screen_bacround.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,6 +14,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+
+    void _onTabSinup(){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
+    }
 
     void _onTabForgetPassword(){
       Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPasswordEmailVerify()));
@@ -64,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
             
                              TextSpan(
                                  text: " Sing Up",
+                                 recognizer: TapGestureRecognizer()..onTap=_onTabSinup,
                                  style: TextStyle(color: Colors.teal)
                              )
                            ]
