@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager_app_practise/ui/screens/add_task_screen.dart';
 
 import '../widgets/task_card.dart';
 import '../widgets/task_count.dart';
@@ -45,6 +46,15 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
          )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(50)
+        ),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTaskScreen()));
+        },child: Icon(Icons.add),),
     );
   }
 }
