@@ -4,14 +4,14 @@ import 'package:taskmanager_app_practise/ui/screens/add_task_screen.dart';
 import '../widgets/task_card.dart';
 import '../widgets/task_count.dart';
 import '../widgets/tm_app_bar.dart';
-class ProgressTaskScreen extends StatefulWidget {
-  const ProgressTaskScreen({super.key});
+class CancelledTaskScreeen extends StatefulWidget {
+  const CancelledTaskScreeen({super.key});
 
   @override
-  State<ProgressTaskScreen> createState() => _NewTaskScreenState();
+  State<CancelledTaskScreeen> createState() => _NewTaskScreenState();
 }
 
-class _NewTaskScreenState extends State<ProgressTaskScreen> {
+class _NewTaskScreenState extends State<CancelledTaskScreeen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +22,9 @@ class _NewTaskScreenState extends State<ProgressTaskScreen> {
 
           Expanded(
             child: ListView.separated(itemBuilder: (context,index){
-              return Task_Card(status: 'Progress', multipleColor: Colors.purple,);
+              return Task_Card(status: 'Cancelled', multipleColor: Colors.red,);
             }, separatorBuilder: (context,index){
-              return SizedBox(width: 2,);
+              return SizedBox(width: 1,);
             }, itemCount: 10),
           )
         ],

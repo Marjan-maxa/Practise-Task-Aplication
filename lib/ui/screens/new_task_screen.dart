@@ -31,7 +31,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                return TaskountByStatus(count: index+5, title: 'Cancelled',);
              },
                separatorBuilder: (context,index){
-                 return SizedBox(width: 2,);
+                 return SizedBox(width: 0,);
                },
 
              ),
@@ -39,9 +39,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
          ),
          Expanded(
            child: ListView.separated(itemBuilder: (context,index){
-             return Task_Card();
+             return Task_Card(status: 'New', multipleColor: Colors.blue,);
            }, separatorBuilder: (context,index){
-             return SizedBox(width: 2,);
+             return SizedBox(width: 0,);
            }, itemCount: 10),
          )
         ],

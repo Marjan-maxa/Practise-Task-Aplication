@@ -34,10 +34,12 @@ class photo_Picker extends StatelessWidget {
                   color: Colors.grey.shade300
               ),
             ),
-            Text(selectedPhoto==null? 'Photo not found':selectedPhoto!.name,
-            style: TextStyle(
-              overflow: TextOverflow.ellipsis
-            ),),
+            Expanded(
+              child: Text(selectedPhoto==null? 'Photo not found':selectedPhoto!.name,
+              style: TextStyle(
+                overflow: TextOverflow.ellipsis
+              ),),
+            ),
           ],
         ),
       ),
