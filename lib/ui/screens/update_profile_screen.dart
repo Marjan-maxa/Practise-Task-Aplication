@@ -34,61 +34,63 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TM_AppBar(),
-      body: ScreenBacround(child:
-      Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 70,),
-            Text('Update Profile',style:Theme.of(context).textTheme.titleLarge,),
-            const SizedBox(height: 15,),
-            photo_Picker(onTap: imgPick,selectedPhoto: _selectedImage,),
-            const SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: 'Email'
+      body: SingleChildScrollView(
+        child: ScreenBacround(child:
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 70,),
+              Text('Update Profile',style:Theme.of(context).textTheme.titleLarge,),
+              const SizedBox(height: 15,),
+              photo_Picker(onTap: imgPick,selectedPhoto: _selectedImage,),
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Email'
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: 'First Name'
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'First Name'
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: 'Last Name'
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Last Name'
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: 'Mobile'
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Mobile'
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: 'Password'
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Password'
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: FilledButton(
-
-                    style: FilledButton.styleFrom(
-                        backgroundColor: Colors.teal
-                    ),
-                    onPressed: (){
-                    }, child: Icon(Icons.arrow_circle_right_outlined,size: 25,))
-            ),
-          ],
+              const SizedBox(height: 20,),
+              SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: FilledButton(
+        
+                      style: FilledButton.styleFrom(
+                          backgroundColor: Colors.teal
+                      ),
+                      onPressed: (){
+                      }, child: Icon(Icons.arrow_circle_right_outlined,size: 25,))
+              ),
+            ],
+          ),
         ),
-      ),
+        ),
       ),
     );
   }

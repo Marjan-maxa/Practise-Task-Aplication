@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager_app_practise/ui/screens/login_screen.dart';
 import 'package:taskmanager_app_practise/ui/screens/update_profile_screen.dart';
 class TM_AppBar extends StatelessWidget implements PreferredSizeWidget{
   const TM_AppBar({
@@ -33,7 +34,10 @@ class TM_AppBar extends StatelessWidget implements PreferredSizeWidget{
         ),
       ),
       actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.logout,color: Colors.white,))
+        IconButton(onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+
+        }, icon: Icon(Icons.logout,color: Colors.white,))
       ],
     );
   }

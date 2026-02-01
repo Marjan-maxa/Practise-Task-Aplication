@@ -10,11 +10,16 @@ class ScreenBacround extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SvgPicture.asset(AssetsPath.bacroundImgPath,fit: BoxFit.cover,),
-        SafeArea(child: child)
-      ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          SvgPicture.asset(AssetsPath.bacroundImgPath,fit: BoxFit.cover,),
+          SafeArea(child: child)
+        ],
+      ),
     );
   }
 }

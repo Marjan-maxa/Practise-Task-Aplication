@@ -9,10 +9,10 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ScreenBacround(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: ScreenBacround(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,7 +53,7 @@ class SignupScreen extends StatelessWidget {
                       height: 50,
                       width: double.infinity,
                       child: FilledButton(
-
+              
                           style: FilledButton.styleFrom(
                               backgroundColor: Colors.teal
                           ),
@@ -65,29 +65,29 @@ class SignupScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 20,),
-
+              
                         RichText(
                           text:TextSpan(
                               text: "Have account?",
                               style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                               children: [
-
+              
                                 TextSpan(
                                     text: " Sing In",
                                     style: TextStyle(color: Colors.teal)
                                 )
                               ]
-
+              
                           ),
-
+              
                         ),
                       ],
                     ),
                   )
                 ],
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }
