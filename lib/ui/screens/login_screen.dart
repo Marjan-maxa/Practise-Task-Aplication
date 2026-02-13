@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager_app_practise/data/models/user_model.dart';
+import 'package:taskmanager_app_practise/ui/screens/controller/auth_controller.dart';
 import 'package:taskmanager_app_practise/ui/screens/forget_password_email_verify.dart';
 import 'package:taskmanager_app_practise/ui/screens/signup_screen.dart';
 import 'package:taskmanager_app_practise/ui/widgets/screen_bacround.dart';
@@ -171,6 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if(response.isSuccess){
+      UserModel model=UserModel.fromJson(response.responseData['data']);
+      String accesstoken=response.responseData['token'];
+     await AuthController.saveUserData(model, accesstoken);
       clearTextFeild();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:
       Text('login successfully Completed..!',),
