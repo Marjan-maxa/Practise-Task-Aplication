@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskmanager_app_practise/ui/screens/controller/auth_controller.dart';
 import 'package:taskmanager_app_practise/ui/screens/login_screen.dart';
 import 'package:taskmanager_app_practise/ui/utils/assets_path.dart';
@@ -37,3 +36,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+

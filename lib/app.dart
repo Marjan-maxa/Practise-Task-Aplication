@@ -5,8 +5,8 @@ import 'package:taskmanager_app_practise/ui/screens/signup_screen.dart';
 import 'package:taskmanager_app_practise/ui/screens/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
-  const TaskManagerApp({super.key});
-
+   TaskManagerApp({super.key});
+static GlobalKey<NavigatorState> navigator=GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

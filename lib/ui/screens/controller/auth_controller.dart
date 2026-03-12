@@ -30,4 +30,11 @@ static Future  saveUserData(UserModel model,String token) async {
   String? token=sharedPreferences.getString(_accessTokenKey);
   return token!=null;
   }
+  static Future<void>clearUserData() async {
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  sharedPreferences.clear();
+  }
 }
+
+
+// 18 module class 4 start again in the next day
