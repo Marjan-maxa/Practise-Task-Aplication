@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager_app_practise/data/models/task_model.dart';
 
 class Task_Card extends StatelessWidget {
   const Task_Card({
-    super.key, required this.status, required this.multipleColor,
+    super.key, required this.taskModel, required this.multipleColor,  required this.refreshParent,
   });
 
-  final String status;
+  final TaskModel taskModel;
   final Color multipleColor;
+  final VoidCallback refreshParent;
 
 
   @override
@@ -21,15 +23,15 @@ class Task_Card extends StatelessWidget {
           shape: RoundedRectangleBorder(
 
           ),
-          title: Text('This is task',style: Theme.of(context).textTheme.titleLarge,),
+          title: Text(taskModel.title,style: Theme.of(context).textTheme.titleLarge,),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Description task'),
-              Text('10/01/26'),
+              Text(taskModel.description),
+              Text(taskModel.createdDate),
               Row(
                 children: [
-                  Chip(label: Text(status,style: TextStyle(fontSize: 12,height: 1),textScaler: const TextScaler.linear(1.0),),
+                  Chip(label: Text(taskModel.status,style: TextStyle(fontSize: 12,height: 1),textScaler: const TextScaler.linear(1.0),),
                     backgroundColor: multipleColor,
                     labelStyle: TextStyle(color: Colors.white),
                     shape: RoundedRectangleBorder(

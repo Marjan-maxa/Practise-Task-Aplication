@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager_app_practise/data/models/task_model.dart';
+import 'package:taskmanager_app_practise/data/services/api_caller.dart';
 import 'package:taskmanager_app_practise/ui/screens/add_task_screen.dart';
+import 'package:taskmanager_app_practise/ui/widgets/snack_bar.dart';
 
+import '../../data/models/task_status-count_model.dart';
+import '../../data/urls/end_points.dart';
 import '../widgets/task_card.dart';
 import '../widgets/task_count.dart';
 import '../widgets/tm_app_bar.dart';
@@ -12,6 +17,62 @@ class NewTaskScreen extends StatefulWidget {
 }
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
+  bool _getTaskStatusCountProgress=false;
+  bool _getNewTaskProgress=false;
+  List<TaskStatusCountModel> _taskStatusCountList=[];
+  List<TaskModel> _newTaskList=[];
+  Future<void>getAllTaskCount() async {
+    _getTaskStatusCountProgress=true  ;
+    setState(() {
+
+    });
+    final ApiResponse response=await ApiCaller.getRequest(Urls.TaskStatusCountUrl);
+    _getTaskStatusCountProgress=false;
+    setState(() {
+
+    });
+    List<TaskStatusCountModel> list=[];
+    if(response.isSuccess){
+   for(Map<String,dynamic>jsonData in response.responseData['data'])
+     list.add(TaskStatusCountModel.formJson(jsonData));
+    }else{
+      showSnakBarMassage(context, response.errorMessagge.toString());
+    }
+    _taskStatusCountList=list;
+    setState(() {
+
+    });
+
+  }
+
+  Future<void>getAllTask() async {
+    _getNewTaskProgress=true  ;
+    setState(() {
+
+    });
+    final ApiResponse response=await ApiCaller.getRequest(Urls.listTaskByStatusUrl);
+    _getNewTaskProgress=false;
+    setState(() {
+
+    });
+    List<TaskModel> list=[];
+    if(response.isSuccess){
+      for(Map<String,dynamic>jsonData in response.responseData['data'])
+        list.add(TaskModel.formJson(jsonData));
+    }else{
+      showSnakBarMassage(context, response.errorMessagge.toString());
+    }
+    _newTaskList=list;
+
+
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    getAllTaskCount();
+    getAllTask();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +87,12 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
              child: ListView.separated(
                scrollDirection: Axis.horizontal,
-               itemCount: 4,
+               itemCount: _taskStatusCountList.length,
                  itemBuilder: (context,index){
-               return TaskountByStatus(count: index+5, title: 'Cancelled',);
+               return TaskountByStatus(
+                 count: _taskStatusCountList[index].count,
+                 title: _taskStatusCountList[index].status,
+               );
              },
                separatorBuilder: (context,index){
                  return SizedBox(width: 0,);
@@ -38,11 +102,16 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
            ),
          ),
          Expanded(
-           child: ListView.separated(itemBuilder: (context,index){
-             return Task_Card(status: 'New', multipleColor: Colors.blue,);
+           child: ListView.separated(
+                   itemCount: _newTaskList.length,
+               itemBuilder: (context,index){
+             return Task_Card(
+               multipleColor: Colors.blue,
+               taskModel: _newTaskList[index],
+               refreshParent: () {  },);
            }, separatorBuilder: (context,index){
              return SizedBox(width: 0,);
-           }, itemCount: 10),
+           }, ),
          )
         ],
       ),
@@ -59,6 +128,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   }
 }
 
+
+// 51:00 minute after
 
 
 

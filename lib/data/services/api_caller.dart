@@ -16,7 +16,8 @@ class ApiCaller{
       Uri uri=Uri.parse(url);
       _logRequest(url);
       Response response=await get(uri,headers: {
-        'token':AuthController.accessToken??''
+        'token':AuthController.accessToken??'',
+
       });
       _logResponse(url,response);
       final int statusCode=response.statusCode;
