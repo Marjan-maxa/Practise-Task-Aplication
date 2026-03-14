@@ -85,33 +85,46 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
            child: SizedBox(
              height: 100,
 
-             child: ListView.separated(
-               scrollDirection: Axis.horizontal,
-               itemCount: _taskStatusCountList.length,
-                 itemBuilder: (context,index){
-               return TaskountByStatus(
-                 count: _taskStatusCountList[index].count,
-                 title: _taskStatusCountList[index].status,
-               );
-             },
-               separatorBuilder: (context,index){
-                 return SizedBox(width: 0,);
+             child: Visibility(
+               visible: _getTaskStatusCountProgress==false,
+               replacement: Center(child: CircularProgressIndicator()),
+               child: ListView.separated(
+                 scrollDirection: Axis.horizontal,
+                 itemCount: _taskStatusCountList.length,
+                   itemBuilder: (context,index){
+                 return TaskountByStatus(
+                   count: _taskStatusCountList[index].count,
+                   title: _taskStatusCountList[index].status,
+                 );
                },
+                 separatorBuilder: (context,index){
+                   return SizedBox(width: 0,);
+                 },
 
+               ),
              ),
            ),
          ),
          Expanded(
-           child: ListView.separated(
-                   itemCount: _newTaskList.length,
-               itemBuilder: (context,index){
-             return Task_Card(
-               multipleColor: Colors.blue,
-               taskModel: _newTaskList[index],
-               refreshParent: () {  },);
-           }, separatorBuilder: (context,index){
-             return SizedBox(width: 0,);
-           }, ),
+           child: Visibility(
+             visible: _getNewTaskProgress==false,
+             replacement: Center(child: CircularProgressIndicator()),
+             child: ListView.separated(
+
+                     itemCount: _newTaskList.length,
+                 itemBuilder: (context,index){
+               return Task_Card(
+                 multipleColor: Colors.blue,
+                 taskModel: _newTaskList[index],
+                 refreshParent: () {
+                   getAllTask();
+                   getAllTaskCount();
+                 },);
+             }, separatorBuilder: (context,index){
+               return SizedBox(width: 0,);
+             },
+             ),
+           ),
          )
         ],
       ),

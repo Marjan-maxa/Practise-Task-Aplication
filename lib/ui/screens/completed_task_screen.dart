@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager_app_practise/ui/screens/add_task_screen.dart';
-
+import '../../data/models/task_model.dart';
+import '../../data/services/api_caller.dart';
+import '../../data/urls/end_points.dart';
+import '../widgets/snack_bar.dart';
 import '../widgets/task_card.dart';
-import '../widgets/task_count.dart';
 import '../widgets/tm_app_bar.dart';
 class CompletedTaskScreen extends StatefulWidget {
   const CompletedTaskScreen({super.key});
@@ -12,6 +13,35 @@ class CompletedTaskScreen extends StatefulWidget {
 }
 
 class _NewTaskScreenState extends State<CompletedTaskScreen> {
+  bool _getCompletedTaskProgress=false;
+  List<TaskModel> _completedTaskList=[];
+  Future<void>getAllCompletedTask() async {
+    _getCompletedTaskProgress=true  ;
+    setState(() {
+
+    });
+    final ApiResponse response=await ApiCaller.getRequest(Urls.completedTaskByStatusUrl);
+    _getCompletedTaskProgress=false;
+    setState(() {
+
+    });
+    List<TaskModel> list=[];
+    if(response.isSuccess){
+      for(Map<String,dynamic>jsonData in response.responseData['data'])
+        list.add(TaskModel.formJson(jsonData));
+    }else{
+      showSnakBarMassage(context, response.errorMessagge.toString());
+    }
+    _completedTaskList=list;
+
+
+  }
+  @override
+  void initState() {
+    getAllCompletedTask();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +51,24 @@ class _NewTaskScreenState extends State<CompletedTaskScreen> {
         children: [
 
           Expanded(
-            child: ListView.separated(itemBuilder: (context,index){
-              // return Task_Card(status: 'Completed', multipleColor: Colors.green,);
-              return Text('data');
-            }, separatorBuilder: (context,index){
-              return SizedBox(width: 2,);
-            }, itemCount: 10),
+            child: Visibility(
+              visible: _getCompletedTaskProgress==false,
+              replacement: Center(child: CircularProgressIndicator()),
+              child: ListView.separated(
+
+                itemCount: _completedTaskList.length,
+                itemBuilder: (context,index){
+                  return Task_Card(
+                    multipleColor: Colors.green,
+                    taskModel: _completedTaskList[index],
+                    refreshParent: () {
+
+                      getAllCompletedTask();
+                    },);
+                }, separatorBuilder: (context,index){
+                return SizedBox(width: 0,);
+              }, ),
+            ),
           )
         ],
       ),

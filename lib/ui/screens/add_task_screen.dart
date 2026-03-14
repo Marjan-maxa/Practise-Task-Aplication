@@ -103,6 +103,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
    });
    if(response.isSuccess){
      _clearFeild();
+     Navigator.pushNamedAndRemoveUntil(context, 'navBar', (predicate)=>false);
      showSnakBarMassage(context,'Task Added Successfully');
    }else{
      showSnakBarMassage(context,response.errorMessagge!);
