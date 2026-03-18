@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager_app_practise/ui/screens/add_task_screen.dart';
-
 import '../../data/models/task_model.dart';
 import '../../data/services/api_caller.dart';
 import '../../data/urls/end_points.dart';
 import '../widgets/snack_bar.dart';
 import '../widgets/task_card.dart';
-import '../widgets/task_count.dart';
 import '../widgets/tm_app_bar.dart';
 class CancelledTaskScreeen extends StatefulWidget {
   const CancelledTaskScreeen({super.key});

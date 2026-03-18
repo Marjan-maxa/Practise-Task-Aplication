@@ -20,6 +20,7 @@ static Future  saveUserData(UserModel model,String token) async {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   String? token= sharedPreferences.getString(_accessTokenKey);
   if(token!=null){
+    accessToken=token;
     String? userData=sharedPreferences.getString(userKeyModel);
     userModel=UserModel.fromJson(jsonDecode(userData!));
   }
