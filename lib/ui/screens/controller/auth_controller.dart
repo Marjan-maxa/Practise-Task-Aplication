@@ -26,6 +26,13 @@ static Future  saveUserData(UserModel model,String token) async {
   }
   }
 
+
+  static Future<void> updateUserData(UserModel model) async {
+    SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+   await sharedPreferences.setString(userKeyModel, jsonEncode(model.toJson()));
+    userModel = model;
+  }
+
   static Future<bool> isUserLoggedIn() async {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   String? token=sharedPreferences.getString(_accessTokenKey);
