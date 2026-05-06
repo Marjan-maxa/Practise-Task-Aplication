@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager_app_practise/ui/screens/controller/auth_controller.dart';
 import 'package:taskmanager_app_practise/ui/screens/login_screen.dart';
 import 'package:taskmanager_app_practise/ui/utils/assets_path.dart';
 import 'package:taskmanager_app_practise/ui/widgets/screen_bacround.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/auth_provider.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -14,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToNextScreen()async {
    await Future.delayed(Duration(seconds: 3));
-  await AuthController.getUserData();
-   bool islogin=await AuthController.isUserLoggedIn();
-   if(islogin){
+   final authProvider=Provider.of<AuthProvider>(context,listen: false);
+   authProvider.loadUserData();
+   if(authProvider.isLoggedIn){
      Navigator.pushReplacementNamed(context, 'navBar');
    }else {
      Navigator.pushReplacement(
